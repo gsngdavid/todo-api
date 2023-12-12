@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { TasksRepository } from './tasks.repository';
-import { TaskDto } from 'src/types/interfaces';
+import { CategoryEntity, TaskDto } from 'src/types/interfaces';
 import { v4 as uuidv4 } from 'uuid';
 import { TaskStatus } from 'src/types/enums';
+import db from 'src/db';
 
 @Injectable()
 export class TasksService {
@@ -20,7 +21,15 @@ export class TasksService {
     return this.repo.deleteTask(id);
   }
 
-  createTask(task: TaskDto) {
+  async createTask(task: TaskDto) {
+    const categories: CategoryEntity[] = await db.getData('/categories');
+    const category = categories.find(
+      (category) => category.id === task.categoryId,
+    );
+
+    if (!category)
+      throw new NotFoundException('Category selected does not exist');
+
     const id = uuidv4();
     const newTask = {
       ...task,

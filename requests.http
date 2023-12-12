@@ -10,8 +10,8 @@ POST http://localhost:3000/tasks
 Content-Type: application/json
 
 {
-    "title": "Do exercises",
-    "categoryId": "54321",
+    "title": "Doexercises",
+    "categoryId": "c69da9e9-20b5-4bde-9606-109c715674b7",
     "description": "This is a task for work"
 }
 
