@@ -1,22 +1,43 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import db from 'src/db';
 import { TaskEntity } from 'src/types/interfaces';
 
 @Injectable()
 export class TasksRepository {
-  getTasks() {
-    return 'All tasks';
+  async getTasks() {
+    try {
+      return await db.getData('/tasks');
+    } catch (error) {
+      return [];
+    }
   }
 
-  getTask(id: string) {
-    return `Your want a task with '${id}' id`;
+  async getTask(id: string) {
+    console.log(id);
+    try {
+      const index = await db.getIndex('/tasks', id);
+      if (index === -1) throw new NotFoundException();
+      return await db.getData(`/tasks[${index}]`);
+    } catch (error) {
+      throw new NotFoundException();
+    }
   }
 
-  deleteTask(id: string) {
-    return `Task with '${id}' id deleted`;
+  async deleteTask(id: string) {
+    try {
+      const index = await db.getIndex('/tasks', id);
+      await db.delete(`/tasks[${index}]`);
+      return {
+        id,
+        message: 'Task was deleted successfully',
+      };
+    } catch (error) {
+      throw new NotFoundException();
+    }
   }
 
-  createTask(task: TaskEntity) {
-    console.log(task);
+  async createTask(task: TaskEntity) {
+    await db.push('/tasks[]', task);
     return {
       id: task.id,
       message: 'Task was successfully created',
