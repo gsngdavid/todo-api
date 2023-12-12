@@ -5,11 +5,14 @@ import { CategoryEntity } from 'src/types/interfaces';
 @Injectable()
 export class CategoriesRepository {
   async getCategories() {
-    return await db.getData('/categories');
+    try {
+      return await db.getData('/categories');
+    } catch (error) {
+      return [];
+    }
   }
 
   async createCategories(category: CategoryEntity) {
-    console.log(category);
     await db.push(`/categories[]`, category);
     return {
       id: category.id,
