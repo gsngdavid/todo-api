@@ -18,7 +18,3 @@ export interface TaskDto {
   title: string;
   description: string;
 }
-
-export interface CategoryDto {
-  name: string;
-}

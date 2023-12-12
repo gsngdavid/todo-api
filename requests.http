@@ -6,7 +6,14 @@ GET http://localhost:3000/tasks
 GET http://localhost:3000/tasks/45
 
 ### Create a new task.
-POST http://localhost:3000/tasks/45
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+    "title": "Work",
+    "categoryId": "12345",
+    "description": "This is a task for work"
+}
 
 
 ###  Delete a task by ID.

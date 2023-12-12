@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { TaskEntity } from 'src/types/interfaces';
 
 @Injectable()
 export class TasksRepository {
@@ -12,5 +13,13 @@ export class TasksRepository {
 
   deleteTask(id: string) {
     return `Task with '${id}' id deleted`;
+  }
+
+  createTask(task: TaskEntity) {
+    console.log(task);
+    return {
+      id: task.id,
+      message: 'Task was successfully created',
+    };
   }
 }
