@@ -4,13 +4,13 @@ import { CategoryEntity } from 'src/types/interfaces';
 
 @Injectable()
 export class CategoriesRepository {
-  getCategories() {
-    return 'All categories';
+  async getCategories() {
+    return await db.getData('/categories');
   }
 
   async createCategories(category: CategoryEntity) {
     console.log(category);
-    await db.push(`/categories/${category.id}`, category);
+    await db.push(`/categories[]`, category);
     return {
       id: category.id,
       message: 'Category was successfully created',
