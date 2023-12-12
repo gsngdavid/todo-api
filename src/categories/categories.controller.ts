@@ -12,6 +12,6 @@ export class CategoriesController {
 
   @Post()
   createCategory(@Body() body) {
-    return this.service.createCategory(body);
+    return this.service.createCategory(body.name);
   }
 }
