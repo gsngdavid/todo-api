@@ -5,6 +5,9 @@ GET http://localhost:3000/tasks
 ### Retrieve a single task by ID.
 GET http://localhost:3000/tasks/45
 
+### Create a new task.
+POST http://localhost:3000/tasks/45
+
 
 ###  Delete a task by ID.
 DELETE http://localhost:3000/tasks/35343
@@ -13,11 +16,10 @@ DELETE http://localhost:3000/tasks/35343
 ### Retrieve all categories.
 GET http://localhost:3000/categories
 
-# ====================== NOT DONE YET ============================
-
-
-### Create a new task.
-POST http://localhost:3000/tasks/45
-
 ### Create a new category.
 POST http://localhost:3000/categories
+Content-Type: application/json
+
+{
+    "name": "Work"
+}
