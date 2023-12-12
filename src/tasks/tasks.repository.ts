@@ -13,7 +13,6 @@ export class TasksRepository {
   }
 
   async getTask(id: string) {
-    console.log(id);
     try {
       const index = await db.getIndex('/tasks', id);
       if (index === -1) throw new NotFoundException();
