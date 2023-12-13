@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { TasksRepository } from './tasks.repository';
-import { CategoryEntity, TaskDto } from 'src/types/interfaces';
+import { CategoryEntity, TaskDto } from '../types/interfaces';
 import { v4 as uuidv4 } from 'uuid';
-import { TaskStatus } from 'src/types/enums';
-import db from 'src/db';
+import { TaskStatus } from '../types/enums';
+import db from '../db';
 
 @Injectable()
 export class TasksService {

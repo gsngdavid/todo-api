@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import db from 'src/db';
-import { CategoryEntity } from 'src/types/interfaces';
+import db from '../db';
+import { CategoryEntity } from '../types/interfaces';
 
 @Injectable()
 export class CategoriesRepository {

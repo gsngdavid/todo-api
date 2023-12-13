@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { CategoriesRepository } from './categories.repository';
 import { v4 as uuidv4 } from 'uuid';
-import db from 'src/db';
-import { CategoryEntity } from 'src/types/interfaces';
+import db from '../db';
+import { CategoryEntity } from '../types/interfaces';
 
 @Injectable()
 export class CategoriesService {

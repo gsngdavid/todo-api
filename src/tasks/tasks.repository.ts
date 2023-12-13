@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import db from 'src/db';
-import { TaskEntity } from 'src/types/interfaces';
+import db from '../db';
+import { TaskEntity } from '../types/interfaces';
 
 @Injectable()
 export class TasksRepository {
