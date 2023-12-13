@@ -30,3 +30,7 @@ Content-Type: application/json
 {
     "name": "Unique"
 }
+
+
+###  Delete a category by ID.
+DELETE http://localhost:3000/categories/788bf1d8-c16a-4975-b418-e1dd837ca7ce

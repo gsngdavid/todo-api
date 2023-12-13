@@ -14,17 +14,18 @@ export class CategoriesService {
   }
 
   async createCategory(name: string) {
+    let categories: CategoryEntity[];
     try {
-      const categories: CategoryEntity[] = await db.getData('/categories');
-      if (categories.some((category) => category.name === name))
-        throw new BadRequestException('Category already exists');
+      categories = await db.getData('/categories');
     } catch (error) {
-      if (error instanceof DataError) {
-        const id = uuidv4();
-        return this.repo.createCategories({ id, name });
-      }
-      throw error;
+      if (error instanceof DataError) categories = [];
     }
+
+    if (categories.some((category) => category.name === name))
+      throw new BadRequestException('Category already exists');
+
+    const id = uuidv4();
+    return this.repo.createCategory({ id, name });
   }
 
   async deleteCategory(id: string) {

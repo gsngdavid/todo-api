@@ -17,7 +17,7 @@ export class CategoriesRepository {
     }
   }
 
-  async createCategories(category: CategoryEntity) {
+  async createCategory(category: CategoryEntity) {
     await db.push(`/categories[]`, category);
     return {
       id: category.id,
