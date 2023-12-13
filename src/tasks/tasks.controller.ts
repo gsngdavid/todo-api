@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Post, Param } from '@nestjs/common';
 import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dtos/create-task.dto';
+import { TaskIdDto } from './dtos/task-id.dto';
 
 @ApiTags('Tasks')
 @Controller('tasks')
@@ -34,7 +35,7 @@ export class TasksController {
     status: 500,
     description: 'Internal error server occurred.',
   })
-  getTask(@Param() { id }: { id: string }) {
+  getTask(@Param() { id }: TaskIdDto) {
     return this.service.getTask(id);
   }
 
@@ -51,7 +52,7 @@ export class TasksController {
     status: 500,
     description: 'Internal error server occurred.',
   })
-  deleteTask(@Param() { id }: { id: string }) {
+  deleteTask(@Param() { id }: TaskIdDto) {
     return this.service.deleteTask(id);
   }
 

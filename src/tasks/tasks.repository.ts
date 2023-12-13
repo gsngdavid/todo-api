@@ -25,13 +25,15 @@ export class TasksRepository {
   async deleteTask(id: string) {
     try {
       const index = await db.getIndex('/tasks', id);
+      if (index === -1) throw 'Task does not exist';
+
       await db.delete(`/tasks[${index}]`);
       return {
         id,
         message: 'Task was deleted successfully',
       };
     } catch (error) {
-      throw new NotFoundException();
+      throw new NotFoundException('Task does not exist');
     }
   }
 
