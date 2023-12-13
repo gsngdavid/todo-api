@@ -1,6 +1,8 @@
-import { IsAlpha } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { Matches } from 'class-validator';
 
 export class CreateCategoryDto {
-  @IsAlpha()
+  @ApiProperty({ example: 'Work', required: true })
+  @Matches(/^[A-Za-z ]+$/g)
   name: string;
 }
